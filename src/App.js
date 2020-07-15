@@ -4,8 +4,9 @@ import "./App.css";
 
 import Home from "./pages/Home";
 import Arcan from "./pages/Arcan";
+import Events from "./pages/Events";
 import Landing from "./pages/Landing";
-import Navbar from "./components/Navbar";
+import Footer from "./components/Footer"
 
 function App() {
   return (
@@ -13,8 +14,11 @@ function App() {
       <Switch>
         <Route path="/home" component={Home} />
         <Route path="/about" component={Arcan} />
+        <Route path="/events" component={Events} />
         <Route path="/" component={Landing} />
       </Switch>
+
+      <Footer />
     </div>
   );
 }

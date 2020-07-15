@@ -1,5 +1,6 @@
 import React from "react";
 import { Col, Row } from "react-bootstrap"
+import { Link } from "react-router-dom"
 
 function Navbar() {
   return (
@@ -22,7 +23,7 @@ function Navbar() {
               </div>
             </li>
             <li className="linkUnder mr60">News</li>
-            <li className="linkUnder">Events</li>
+            <li className="linkUnder"><Link className="links" to="/events">Events</Link></li>
           </ul>
         </Col>
         <Col className="navCol" md={6}>
