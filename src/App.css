@@ -6,6 +6,7 @@
 .navBar {
   position: fixed;
   z-index: 99;
+  
 }
 
 .customNavBar {
@@ -17,6 +18,7 @@
 .logo {
   margin-top: -148px;
   position: relative;
+  width: 4.8%;
 }
 
 .navRow {
@@ -139,14 +141,39 @@
 .calendar {
   background-color: lightblue;
   padding-top: 120px;
-  height: 100vh;
+  padding-bottom: 50px;
+}
+
+.calendarContainer {
+  max-width: 1000px;
+}
+
+.monthNavLeft {
+  text-align: left;
+}
+
+.monthNavRight {
+  text-align: right;
 }
 
 .dateDisabled {
   color: grey;
 }
 
+.dateSelected {
+  background-color: red !important;
+}
+
+.weekdayCell {
+  padding: 5px 0;
+  background-color: yellow;
+  border: 0.5px solid lightgrey;
+}
+
 .dateCell {
-  flex: 0 1 13%;
-  padding: 20px;
+  text-align: right;
+  padding: 5px 10px;
+  background-color: white;
+  border: 0.5px solid lightgrey;
+  height: 90px;
 }
