@@ -1,23 +1,32 @@
+.mr10 {
+  margin-right: 10px;
+}
+
+.mr20 {
+  margin-right: 20px;
+}
+
+.mr60 {
+  margin-right: 60px;
+}
+
 .App {
   text-align: center;
 }
 
 /* Navbar */
 .navBar {
+  background: url('/customNavBar.png');
+  background-position: center;
+  background-size: cover;
+  width: 100%;
+  height: 110px;
   position: fixed;
   z-index: 99;
-  
-}
-
-.customNavBar {
-  width: 100%;
-  overflow: hidden;
-  opacity: 40%;
 }
 
 .logo {
-  margin-top: -148px;
-  position: relative;
+  margin-top: 10px;
   width: 4.8%;
 }
 
@@ -65,12 +74,12 @@
 }
 
 .navDrop > ul {
-  margin-top: 13px;
+  margin-top: 12.5px;
   padding-left: 0;
   position: absolute;
   display: none;
   list-style: none;
-  background-color: rgb(82, 82, 82, .4);
+  background-color: rgb(60, 60, 60, .6);
   text-align: left;
 }
 
@@ -79,13 +88,16 @@
 }
 
 .navDrop > ul > li {
-  padding: 6px 12px;
-  transition: .3s;
+  padding: 7px 14px;
+  transition: .5s;
+  background: linear-gradient(to right, #2cbf81 50%, transparent 50%);
+  background-size: 200% 100%;
+  background-position: right bottom;
 }
 
 .navDrop > ul > li:hover {
-  background-color: #2cbf81;
-  transition: .3s;
+  background-position: left bottom;
+  transition: .5s;
 }
 
 .linkUnder::after {
@@ -110,14 +122,56 @@
   transition: .4s;
 }
 
-.mr60 {
-  margin-right: 60px;
-}
-
 /* Footer */
 .footer {
-  background-color: #2cbf81;
-  height: 200px;
+  background-color: rgb(60, 60, 60);
+}
+
+.footerCompanyInfo {
+  padding: 40px 0;
+}
+
+.footerMediaIconList {
+  display: inline-flex;
+  list-style: none;
+  padding-left: 0;
+}
+
+.footerMediaIcon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 26px;
+  margin-right: 10px;
+  background-color: black;
+  width: 45px;
+  height: 45px;
+  border-radius: 10px;
+}
+
+.companyDetailsList {
+  list-style: none;
+  padding-left: 0;
+  text-align: left;
+}
+
+.companyDetail {
+  display: flex;
+  margin-bottom: 10px;
+  font-size: 14px;
+}
+
+.companyDetail > div > i {
+  font-size: 16px;
+  margin-right: 10px;
+}
+
+.footerCopyrights {
+  display: flex;
+  justify-content: center;
+  font-size: 12px;
+  padding: 10px 0;
+  border-top: .5px solid black;
 }
 
 /* Landing Page */
@@ -176,4 +230,168 @@
   background-color: white;
   border: 0.5px solid lightgrey;
   height: 90px;
+}
+
+/* Event Details */
+.detailsMain {
+  padding-top: 140px;
+  padding-bottom: 30px;
+  height: 100vh;
+}
+
+.detailsGenresList {
+  display: inline-flex;
+  list-style: none;
+  padding-left: 0;
+}
+
+.detailsList {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+  padding-left: 0;
+}
+
+/* Contact */
+.contactHeader {
+  padding-top: 100px;
+  padding-bottom: 40px;
+  text-align: left;
+  background-image: url("/headerBgSample.jpg");
+  background-position: center;
+  background-size: cover;
+  color: white;
+  font-family: 'Do Hyeon', sans-serif;
+  letter-spacing: 2px;
+}
+
+.contactMain {
+  padding: 40px 0;
+}
+
+.contactFormDiv{
+  display: flex;
+  justify-content: center;
+}
+
+.contactForm {
+  width: 35%;
+}
+
+/* Tickets */
+.ticketsHeader {
+  padding-top: 100px;
+  padding-bottom: 40px;
+  text-align: left;
+  background-image: url("/headerBgSample.jpg");
+  background-position: center;
+  background-size: cover;
+  color: white;
+  font-family: 'Do Hyeon', sans-serif;
+  letter-spacing: 2px;
+}
+
+.ticketSearchBar {
+  padding: 15px 0;
+  background-color: #2cbf81;
+}
+
+.ticketSearchIcon {
+  position: absolute;
+  margin-left: 20px;
+  margin-top: 12px;
+}
+
+.ticketSearchBar > input {
+  padding: 5px 10px 5px 45px;
+  border-radius: 20px;
+  border: 1px solid black;
+  background-color: transparent;
+}
+
+.ticketEventList {
+  padding: 40px 0;
+}
+
+.ticketEventCont {
+  display: flex;
+  justify-content: space-between;
+}
+
+.ticketEvent {
+  width: 20%;
+}
+
+/* News */
+.newsHeader {
+  padding-top: 100px;
+  padding-bottom: 40px;
+  text-align: left;
+  background-image: url("/headerBgSample.jpg");
+  background-position: center;
+  background-size: cover;
+  color: white;
+  font-family: 'Do Hyeon', sans-serif;
+  letter-spacing: 2px;
+}
+
+.newsList {
+  padding: 40px 0;
+}
+
+.newsListCont {
+  display: flex;
+  justify-content: space-between;
+}
+
+.newsCard {
+  width: 30%;
+}
+
+/* News Details */
+.newsDetailsImg {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 400px;
+  overflow: hidden;
+}
+
+.newsDetailsInfo {
+  padding: 40px 0;
+}
+
+/* Admin Navbar */
+.adminNavMain {
+  height: 100vh;
+  width: 15%;
+  background-color: rgb(60, 60, 60);
+  color: white;
+}
+
+.adminNavProfileImg {
+  border-radius: 50px;
+}
+
+.adminNavList {
+  list-style: none;
+  padding-left: 0;
+}
+
+/* Admin News */
+.adminNewsMain {
+  display: flex;
+}
+
+.adminNewsList {
+  width: 85%;
+}
+
+/* Admin Events */
+.adminEventsMain {
+  display: flex;
+}
+
+.adminEventList {
+  width: 85%;
 }

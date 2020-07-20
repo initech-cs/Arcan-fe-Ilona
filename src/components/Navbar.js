@@ -5,8 +5,7 @@ import { Link } from "react-router-dom";
 function Navbar() {
   return (
     <div className="navBar">
-      <img src="customNavBar.png" className="customNavBar" />
-      <img src="arcanLogo.png" className="logo" width="62" />
+      <img src="/arcanLogo.png" className="logo" width="62" />
       <Row className="navRow">
         <Col className="navCol" md={6}>
           <ul className="navList">
@@ -22,7 +21,9 @@ function Navbar() {
                 </ul>
               </div>
             </li>
-            <li className="linkUnder mr60">News</li>
+            <li className="linkUnder mr60">
+              <Link className="links" to="/news">News</Link>
+            </li>
             <li className="linkUnder">
               <Link className="links" to="/events">
                 Events
@@ -32,16 +33,10 @@ function Navbar() {
         </Col>
         <Col className="navCol" md={6}>
           <ul className="navList">
-            <li className="mr60">
-              <div className="navDrop">
-                <span>
-                  Shop<i className="fas fa-chevron-right"></i>
-                </span>
-                <ul>
-                  <li>Tickets</li>
-                  <li>Merch</li>
-                </ul>
-              </div>
+            <li className="linkUnder mr60">
+              <Link className="links" to="/tickets">
+                Tickets
+              </Link>
             </li>
             <li className="mr60">
               <div className="navDrop">
@@ -54,17 +49,10 @@ function Navbar() {
                 </ul>
               </div>
             </li>
-            <li className="mr60">
-              <div className="navDrop">
-                <span>
-                  Enquiry<i className="fas fa-chevron-right"></i>
-                </span>
-                <ul>
-                  <li>Customers</li>
-                  <li>Promoters</li>
-                  <li>Enterprises</li>
-                </ul>
-              </div>
+            <li className="linkUnder mr60">
+              <Link className="links" to="/contact">
+                Contact
+              </Link>
             </li>
             <li>
               <i className="fas fa-shopping-cart"></i>

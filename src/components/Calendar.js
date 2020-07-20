@@ -44,7 +44,7 @@ function Calendar() {
   };
 
   const weekdays = () => {
-    const days = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
+    const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
     const renderDays = days.map((day) => {
       return <Col className="weekdayCell">{day}</Col>;
