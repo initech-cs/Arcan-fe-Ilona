@@ -12,6 +12,14 @@ function Events() {
           <Calendar />
       </div>
 
+      <div>
+        <h2>Upcoming Events</h2>
+      </div>
+
+      <div>
+        <h2>Book the Venue</h2>
+      </div>
+
       <Footer />
     </div>
   );

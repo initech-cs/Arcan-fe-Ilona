@@ -35,7 +35,6 @@ function AdminEvents() {
     return <div>Loading...</div>;
   }
 
-  console.log(eventList);
   return (
     <div className="adminEventsMain">
       <AdminNavbar />
@@ -48,7 +47,7 @@ function AdminEvents() {
             </Col>
             <Col>
               <i class="fas fa-search"></i>
-              <input type="search" placeholder="Search by Title" />
+              <input type="search" placeholder="Search by title" />
             </Col>
           </Row>
           <Modal show={form} onHide={closeForm}>

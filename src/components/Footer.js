@@ -6,7 +6,9 @@ function Footer() {
     <div className="footer">
       <Container>
         <Row className="footerCompanyInfo">
-          <Col md={2}></Col>
+          <Col md={1}>
+            <img src="/images/arcanLogoWithText.png" width={60} />
+          </Col>
           <Col md={3}>
             <iframe
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.1771134527107!2d106.70601581406848!3d10.797743192307083!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x317529ac4a14df47%3A0xc24741c361686865!2sARCAN!5e0!3m2!1sen!2s!4v1595004841348!5m2!1sen!2s"
@@ -19,7 +21,7 @@ function Footer() {
               tabindex="0"
             ></iframe>
           </Col>
-          <Col md={4}>
+          <Col md={5}>
             <ul className="companyDetailsList">
               <li className="companyDetail">
                 <div>

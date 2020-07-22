@@ -11,7 +11,7 @@ function AdminNavbar() {
             <ul className="adminNavList">
                 <li><Link to="/admin/news">News</Link></li>
                 <li><Link to="/admin/events">Events</Link></li>
-                <li>Videos</li>
+                <li><Link to="/admin/media">Media</Link></li>
             </ul>
         </div>
     )

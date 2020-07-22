@@ -63,7 +63,7 @@ function AdminNews() {
             </Col>
             <Col>
               <i class="fas fa-search"></i>
-              <input type="search" placeholder="Search by Title" />
+              <input type="search" placeholder="Search by title" />
             </Col>
           </Row>
           <Modal show={form} onHide={closeForm}>
@@ -101,8 +101,8 @@ function AdminNews() {
                 <Form.Control
                   name="imageUrl"
                   type="url"
-                  placeholder="Paste image URL here"
-                />{" "}
+                  placeholder="Image URL"
+                />
               </Form.Group>
               <button type="submit">Publish</button>
             </Form>

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Row, Col, Container } from "react-bootstrap";
 
 import {
@@ -17,6 +17,19 @@ import {
 function Calendar() {
   const [currentMonth, setCurrentMonth] = useState(new Date());
   const [selectedDate, setSelectedDate] = useState(new Date());
+  const [eventsList, setEventsList] = useState(null);
+
+  const loadEvents = async () => {
+    const url = `${process.env.REACT_APP_BACKEND_URL}/events`;
+    const data = await fetch(url);
+    const result = await data.json();
+
+    setEventsList(result);
+  };
+
+  useEffect(() => {
+    loadEvents()
+  }, [])
 
   const nextMonth = () => {
     setCurrentMonth(addMonths(currentMonth, 1));
@@ -53,13 +66,6 @@ function Calendar() {
     return <Row>{renderDays}</Row>;
   };
 
-  const arr = [
-    { date: "2020/07/11", title: "hehe" },
-    { date: "2020/07/11", title: "same" },
-    { date: "2020/07/12", title: "hhaaa" },
-    { date: "2020/07/13", title: "hihi" },
-  ];
-
   const cells = () => {
     const monthStart = startOfMonth(currentMonth);
     const monthEnd = endOfMonth(monthStart);
@@ -84,7 +90,7 @@ function Calendar() {
             }`}
           >
             <span>{format(day, dateFormat)}</span>
-            {matchDay(day, arr)}
+            {matchDay(day, eventsList)}
           </Col>
         );
         day = addDays(day, 1);
@@ -107,12 +113,18 @@ function Calendar() {
       });
 
       if (bool) {
-        let arrr = a.filter((e, i) => idx.includes(i));
-        return arrr.map((e) => <div>{e.title}</div>);
+        let filteredEventsList = a.filter((e, i) => idx.includes(i));
+        return filteredEventsList.map((e) => <div>{e.title}</div>);
       }
       return <></>;
     }
   };
+
+  if (eventsList === null) {
+    return <div>Loading...</div>;
+  }
+
+  console.log(eventsList);
 
   return (
     <div>

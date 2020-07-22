@@ -11,12 +11,14 @@ import EventDetails from "./pages/EventDetails";
 import Landing from "./pages/Landing";
 import Login from "./pages/Login";
 import AdminPanel from "./pages/Admin"
+import AdminMedia from "./pages/AdminMedia"
 import Contact from "./pages/Contact";
-import Tickets from "./pages/Tickets";
 import News from "./pages/News";
 import NewsDetails from "./pages/NewsDetails";
 import AdminNews from "./pages/AdminNews"
 import AdminEvents from "./pages/AdminEvents"
+import Bookings from "./pages/Bookings"
+import Media from "./pages/Media"
 
 function App() {
   const user = useSelector((state) => state.user);
@@ -28,13 +30,15 @@ function App() {
         <Route path="/admin/login" component={Login} />
         <Route path="/admin/events" component={AdminEvents} />
         <Route path="/admin/news" component={AdminNews} />
+        <Route path="/admin/media" component={AdminMedia} />
         <Route path="/admin" component={AdminPanel} />
         <Route path="/about" component={Arcan} />
         <Route path="/news/:id" component={NewsDetails} />
         <Route path="/news" component={News} />
         <Route path="/events/details" component={EventDetails} />
         <Route path="/events" component={Events} />
-        <Route path="/tickets" component={Tickets} />
+        <Route path="/media" component={Media} />
+        <Route path="/bookings" component={Bookings} />
         <Route path="/contact" component={Contact} />
         <Route path="/" component={Landing} />
       </Switch>
