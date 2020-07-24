@@ -26,7 +26,7 @@ function Upcoming() {
 
   const events = upcomingList.slice(0, numberOfEvents).map((i) => {
     return (
-      <Col md={3} className="upcomingCol">
+      <Col md={3} className="upcomingCol mb40">
         <div>
           <img src={`${i.imageUrl}`} height="100%" />
         </div>
