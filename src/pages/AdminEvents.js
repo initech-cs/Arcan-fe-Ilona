@@ -279,8 +279,7 @@ function AdminEvents() {
                 </Form.Group>
                 <Form.Group>
                   <Form.Control
-                    name=""
-                    imageUrl
+                    name="imageUrl"
                     type="url"
                     placeholder="Paste image URL here"
                   />
