@@ -281,7 +281,7 @@ function AdminEvents() {
                   <Form.Control
                     name="imageUrl"
                     type="url"
-                    placeholder="Paste image URL here"
+                    placeholder="Image URL"
                   />
                 </Form.Group>
                 <button className="closeFormBtn" onClick={closeForm}>
