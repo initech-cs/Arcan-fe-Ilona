@@ -5,12 +5,14 @@ import { Container, Form, Col } from "react-bootstrap";
 import DatePicker from "react-datepicker";
 
 function Bookings() {
-  const [eventDate, setEventDate] = useState(new Date());
-  const [eventDateSec, setEventDateSec] = useState(new Date());
-  const [formData, setFormData] = useState(null);
+  const [formData, setFormData] = useState({
+    dateOne: new Date(),
+    dateTwo: new Date(),
+  });
 
-  const selectEventDate = (date) => setEventDate(date);
-  const selectEventDateSec = (date) => setEventDateSec(date);
+  const selectEventDate = (date) => setFormData({ ...formData, dateOne: date });
+  const selectEventDateSec = (date) =>
+    setFormData({ ...formData, dateTwo: date });
 
   const handleChange = (e) => {
     setFormData({
@@ -32,8 +34,6 @@ function Bookings() {
     const data = await response.json();
   };
 
-  console.log(formData);
-
   return (
     <div>
       <Navbar />
@@ -53,20 +53,35 @@ function Bookings() {
               onSubmit={handleSubmit}
             >
               <Form.Group>
-                <Form.Control name="name" type="text" placeholder="Full Name" />
+                <Form.Control
+                  className="bookInput"
+                  name="name"
+                  type="text"
+                  placeholder="Full Name"
+                />
               </Form.Group>
               <Form.Group>
-                <Form.Control name="email" type="email" placeholder="Email" />
+                <Form.Control
+                  className="bookInput"
+                  name="email"
+                  type="email"
+                  placeholder="Email"
+                />
               </Form.Group>
               <Form.Row>
                 <Col>
                   <Form.Group>
-                    <Form.Control name="phone" placeholder="Phone Number" />
+                    <Form.Control
+                      className="bookInput"
+                      name="phone"
+                      placeholder="Phone Number"
+                    />
                   </Form.Group>
                 </Col>
                 <Col>
                   <Form.Group>
                     <Form.Control
+                      className="bookInput"
                       name="organization"
                       type="text"
                       placeholder="Name of Organization"
@@ -76,6 +91,7 @@ function Bookings() {
               </Form.Row>
               <Form.Group>
                 <Form.Control
+                  className="bookInput"
                   name="pageUrl"
                   type="url"
                   placeholder="Website/Facebook Page URL"
@@ -86,8 +102,9 @@ function Bookings() {
                   <Form.Group>
                     <span>Date (Option 1):</span>
                     <DatePicker
+                      className="bookDateInput"
                       name="dateOne"
-                      selected={eventDate}
+                      selected={formData.dateOne}
                       onChange={selectEventDate}
                     />
                   </Form.Group>
@@ -95,8 +112,9 @@ function Bookings() {
                 <Col>
                   <span>Date (Option 2):</span>
                   <DatePicker
+                    className="bookDateInput"
                     name="dateTwo"
-                    selected={eventDateSec}
+                    selected={formData.dateTwo}
                     onChange={selectEventDateSec}
                   />
                 </Col>
@@ -106,7 +124,7 @@ function Bookings() {
                   <Form.Group>
                     <Form.Control
                       name="startTime"
-                      className="timeSelect"
+                      className="bookInput"
                       as="select"
                     >
                       <option selected disabled>
@@ -143,7 +161,7 @@ function Bookings() {
                   <Form.Group>
                     <Form.Control
                       name="endTime"
-                      className="timeSelect"
+                      className="bookInput"
                       as="select"
                     >
                       <option selected disabled>
@@ -179,29 +197,38 @@ function Bookings() {
                 <Col>
                   <Form.Group>
                     <Form.Control
+                      className="bookInput"
                       name="capacity"
                       type="number"
-                      placeholder="Expected No. of People"
+                      placeholder="No. of Guests"
                     />
                   </Form.Group>
                 </Col>
               </Form.Row>
               <Form.Group>
                 <Form.Control
-                  name="eventName"
+                  className="bookInput"
+                  name="title"
                   type="text"
                   placeholder="Event Title"
                 />
               </Form.Group>
               <Form.Group>
                 <Form.Control
+                  className="bookInput"
                   as="textarea"
                   name="description"
                   rows="5"
                   placeholder="Event description"
                 />
               </Form.Group>
-              <button type="submit">Send</button>
+              <button
+                className="pinkBtn"
+                type="submit"
+                onClick={() => window.location.reload(false)}
+              >
+                SUBMIT FORM
+              </button>
             </Form>
           </Container>
         </div>

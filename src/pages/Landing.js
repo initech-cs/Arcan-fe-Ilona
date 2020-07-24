@@ -25,10 +25,10 @@ function Landing() {
           <div className="landMainCont">
             <div>
               <h5>Asian Rave Connection Ltd.</h5>
-              <img src="/images/arcanLogoText.png" />
+              <img src="/images/arcanLogoText.png" height={80} />
               <h1>#1 Event Space in Saigon</h1>
               <Link to="/bookings">
-                <button className="bookBtn">Book the Venue</button>
+                <button className="bookBtn">BOOK THE VENUE</button>
               </Link>
             </div>
           </div>

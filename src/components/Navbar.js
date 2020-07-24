@@ -5,24 +5,21 @@ import { Link } from "react-router-dom";
 function Navbar() {
   return (
     <div className="navBar">
-      <Link to="/home"><img src="/arcanLogo.png" className="logo" width="62" /></Link>
+      <Link to="/">
+        <img src="/images/arcanLogo.png" className="logo" width="62" />
+      </Link>
       <Row className="navRow">
         <Col className="navCol" md={6}>
           <ul className="navList">
-            <li className="mr60">
-              <div className="navDrop">
-                <span>
-                  ABOUT<i className="fas fa-chevron-right"></i>
-                </span>
-                <ul>
-                  <li>Arcan</li>
-                  <li>Menu</li>
-                  <li>Residents</li>
-                </ul>
-              </div>
+            <li className="mr60 linkUnder">
+              <Link className="links" to="/home">
+                HOME
+              </Link>
             </li>
             <li className="linkUnder mr60">
-              <Link className="links" to="/news">NEWS</Link>
+              <Link className="links" to="/news">
+                NEWS
+              </Link>
             </li>
             <li className="linkUnder">
               <Link className="links" to="/events">

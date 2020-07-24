@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer"
-import { Container, Row, Col } from "react-bootstrap";
+import { Container } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 import moment from "moment"
 
@@ -14,7 +14,7 @@ function NewsDetails() {
     const data = await fetch(url);
     const result = await data.json();
 
-    setNewsDetails(result);
+    setNewsDetails(result.data);
   };
 
   useEffect(() => {
@@ -25,20 +25,21 @@ function NewsDetails() {
     return <div>Loading...</div>;
   }
 
-  console.log(newsDetails);
+  console.log(newsDetails)
+  
   return (
     <div>
       <Navbar />
 
       <div className="newsDetailsMain">
         <div className="newsDetailsImg">
-          <img src={newsDetails.imageUrl} width="100%" />
+          <img src={`${newsDetails.news.imageUrl}`} width="100%" />
         </div>
         <div className="newsDetailsInfo">
           <Container>
-            <h2>{newsDetails.title}</h2>
-            <h6>{moment(newsDetails.createdAt).format('LL')}</h6>
-            <p>{newsDetails.description}</p>
+            <h2>{newsDetails.news.title}</h2>
+            <h6>{moment(newsDetails.news.createdAt).format('LL')}</h6>
+            <p>{newsDetails.news.description}</p>
           </Container>
         </div>
       </div>

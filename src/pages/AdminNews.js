@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
 import AdminNavbar from "../components/AdminNavbar";
-import { useHistory } from "react-router-dom";
 import { Container, Row, Col, Modal, Form } from "react-bootstrap";
 import moment from "moment";
 
 function AdminNews() {
+  const [originalList, setOriginalList] = useState(null);
   const [newsList, setNewsList] = useState(null);
   const [form, setForm] = useState(false);
-  const [formData, setFormData] = useState(false);
+  const [formData, setFormData] = useState(null);
 
   const openForm = () => setForm(true);
   const closeForm = () => setForm(false);
@@ -18,6 +18,19 @@ function AdminNews() {
     const result = await data.json();
 
     setNewsList(result);
+    setOriginalList(result);
+  };
+
+  const searchByKeyword = (keyword) => {
+    if (keyword === "") {
+      setNewsList(originalList);
+      return;
+    }
+
+    let filteredList = newsList.filter((news) =>
+      news.title.toLowerCase().includes(keyword.toLowerCase())
+    );
+    setNewsList(filteredList);
   };
 
   const getFormData = (e) => {
@@ -38,10 +51,20 @@ function AdminNews() {
       body: JSON.stringify(formData),
     });
 
-    const dt = await response.json();
+    loadNews();
   };
 
-  const history = useHistory();
+  const deleteNews = async (id) => {
+    const url = `${process.env.REACT_APP_BACKEND_URL}/news/${id}`;
+    const response = await fetch(url, {
+      method: "DELETE",
+      headers: {
+        "content-type": "application/json",
+      },
+    });
+
+    loadNews();
+  };
 
   useEffect(() => {
     loadNews();
@@ -55,76 +78,101 @@ function AdminNews() {
     <div className="adminNewsMain">
       <AdminNavbar />
 
-      <div className="adminNewsList">
+      <div className="adminNews">
         <Container>
           <Row>
             <Col>
-              <button onClick={openForm}>Create News</button>
+              <button className="createNewsBtn" onClick={openForm}>
+                CREATE NEWS
+              </button>
             </Col>
-            <Col>
+            <Col className="adminSearch">
               <i class="fas fa-search"></i>
-              <input type="search" placeholder="Search by title" />
+              <input
+                type="text"
+                placeholder="Search"
+                onChange={(e) => searchByKeyword(e.target.value)}
+              />
             </Col>
           </Row>
           <Modal show={form} onHide={closeForm}>
-            <h2>Create News</h2>
-            <Form onChange={getFormData} onSubmit={submitForm}>
-              <Form.Group>
-                <Form.Control
-                  name="title"
-                  type="text"
-                  placeholder="Add news headline"
-                />
-              </Form.Group>
-              <Form.Group>
-                <Form.Control name="category" as="select">
-                  <option selected disabled>
-                    Select Category
-                  </option>
-                  <option>Artists</option>
-                  <option>Blog</option>
-                  <option>Events</option>
-                  <option>Fashion</option>
-                  <option>Music</option>
-                  <option>Tech</option>
-                </Form.Control>
-              </Form.Group>
-              <Form.Group>
-                <Form.Control
-                  name="description"
-                  as="textarea"
-                  rows="5"
-                  placeholder="Enter description"
-                />
-              </Form.Group>
-              <Form.Group>
-                <Form.Control
-                  name="imageUrl"
-                  type="url"
-                  placeholder="Image URL"
-                />
-              </Form.Group>
-              <button type="submit">Publish</button>
-            </Form>
+            <Modal.Header className="newsModalTitle">CREATE NEWS</Modal.Header>
+            <Modal.Body>
+              <Form
+                className="newsForm"
+                onChange={getFormData}
+                onSubmit={submitForm}
+              >
+                <Form.Group>
+                  <Form.Control
+                    name="title"
+                    type="text"
+                    placeholder="Add news headline"
+                  />
+                </Form.Group>
+                <Form.Group>
+                  <Form.Control name="category" as="select">
+                    <option selected disabled>
+                      Select Category
+                    </option>
+                    <option>Artists</option>
+                    <option>Blog</option>
+                    <option>Events</option>
+                    <option>Fashion</option>
+                    <option>Music</option>
+                    <option>Tech</option>
+                  </Form.Control>
+                </Form.Group>
+                <Form.Group>
+                  <Form.Control
+                    name="description"
+                    as="textarea"
+                    rows="5"
+                    placeholder="Enter description"
+                  />
+                </Form.Group>
+                <Form.Group>
+                  <Form.Control
+                    name="imageUrl"
+                    type="url"
+                    placeholder="Image URL"
+                  />
+                </Form.Group>
+                <button className="closeFormBtn" onClick={closeForm}>
+                  CLOSE
+                </button>
+                <button
+                  className="saveFormBtn"
+                  type="submit"
+                  onClick={closeForm}
+                  type="submit"
+                >
+                  SAVE
+                </button>
+              </Form>
+            </Modal.Body>
           </Modal>
-          <Row>
-            <Col md={2}>Date</Col>
-            <Col md={1}>Category</Col>
-            <Col md={5}>Title</Col>
-            <Col md={4}>Options</Col>
+          <Row className="adminNewsListHeader">
+            <Col md={2}>DATE</Col>
+            <Col md={2}>CATEGORY</Col>
+            <Col md={5}>TITLE</Col>
+            <Col md={3}>OPTIONS</Col>
           </Row>
           {newsList.map((item) => {
             return (
-              <Row>
-                <Col md={2}>{moment(item.createdAt).format("LL")}</Col>
-                <Col md={1}>{item.category}</Col>
+              <Row className="adminNewsList">
+                <Col md={2}>{moment(item.createdAt).format("L")}</Col>
+                <Col md={2}>{item.category}</Col>
                 <Col md={5}>{item.title}</Col>
-                <Col md={4}>
-                  <button>
-                    <i class="fas fa-pen"></i>Edit
+                <Col md={3}>
+                  <button className="editBtn">
+                    <i className="fas fa-pen"></i>Edit
                   </button>
-                  <button>
-                    <i class="fas fa-trash-alt"></i>Delete
+                  <button
+                    className="deleteBtn"
+                    onClick={() => deleteNews(item.id)}
+                  >
+                    <i className="fas fa-trash-alt"></i>Delete
                   </button>
                 </Col>
               </Row>

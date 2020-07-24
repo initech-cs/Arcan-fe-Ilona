@@ -45,22 +45,28 @@ function Contact() {
           >
             <Form.Group>
               <Form.Control
+                className="contactInput"
                 type="text"
                 name="name"
-                placeholder="Full Name (Required)"
+                placeholder="Full Name"
               />
             </Form.Group>
             <Form.Group>
               <Form.Control
+                className="contactInput"
                 name="email"
                 type="email"
-                placeholder="Email Address (Required)"
+                placeholder="Email Address"
               />
             </Form.Group>
             <Form.Row>
               <Col>
-                <Form.Control as="select" name="category">
-                  <option selected disabled>
+                <Form.Control
+                  className="contactInput"
+                  as="select"
+                  name="category"
+                >
+                  <option className="contactOption" selected disabled>
                     Category:
                   </option>
                   <option>General</option>
@@ -71,20 +77,28 @@ function Contact() {
             </Form.Row>
             <Form.Group>
               <Form.Control
+                className="contactInput"
                 name="subject"
                 type="text"
-                placeholder="Subject (Required)"
+                placeholder="Subject"
               />
             </Form.Group>
             <Form.Group>
               <Form.Control
+                className="contactInput"
                 name="message"
                 as="textarea"
-                rows="5"
-                placeholder="Message (Required)"
+                rows="6"
+                placeholder="Message"
               />
             </Form.Group>
-            <button type="submit">Send Message</button>
+            <button
+              className="blueBtn"
+              type="submit"
+              onClick={() => window.location.reload(false)}
+            >
+              SEND MESSAGE
+            </button>
           </Form>
         </div>
       </div>

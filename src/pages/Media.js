@@ -4,15 +4,16 @@ import Footer from "../components/Footer";
 import { Container, Modal, Row, Col } from "react-bootstrap";
 
 function Media() {
+  const [videoNumber, setVideoNumber] = useState(4)
   const [video, setVideo] = useState(false);
   const [mediaList, setMediaList] = useState(null);
+  const [selectedVid, setSelectedVid] = useState("");
 
-  const showVideo = () => setVideo(true);
+  const showVideo = (vid) => {
+    setVideo(true);
+    setSelectedVid(vid);
+  };
   const hideVideo = () => setVideo(false);
-
-  const string = "Joke, DBP Basslines, Basara"
-  const array = string.split(", ")
-  console.log(array)
 
   const loadMedia = async () => {
     const url = `${process.env.REACT_APP_BACKEND_URL}/media`;
@@ -30,10 +31,24 @@ function Media() {
     return <div>Loading...</div>;
   }
 
-  console.log(mediaList)
   return (
     <div>
       <Navbar />
+      <Modal
+        className="mediaModal"
+        size="lg"
+        centered="true"
+        show={video}
+        onHide={hideVideo}
+      >
+        <iframe
+          height="420"
+          src={`https://www.youtube.com/embed/${selectedVid}`}
+          frameborder="0"
+          allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen
+        ></iframe>
+      </Modal>
 
       <div className="mediaHeader">
         <Container>
@@ -47,29 +62,13 @@ function Media() {
             {mediaList.map((item) => {
               return (
                 <Col md={4}>
-                  <div onClick={showVideo}>
+                  <div onClick={() => showVideo(item.videoId)}>
                     <img
                       src={`https://img.youtube.com/vi/${item.videoId}/maxresdefault.jpg`}
                       width="100%"
                     />
-                    <h4>{item.title}</h4>
+                    <h6>{item.title}</h6>
                   </div>
-
-                  <Modal
-                    className="mediaModal"
-                    size="lg"
-                    centered="true"
-                    show={video}
-                    onHide={hideVideo}
-                  >
-                    <iframe
-                      height="420"
-                      src={`https://www.youtube.com/embed/${item.videoId}`}
-                      frameborder="0"
-                      allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                      allowfullscreen
-                    ></iframe>
-                  </Modal>
                 </Col>
               );
             })}

@@ -3,32 +3,40 @@ import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import { Carousel, Container, Row, Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import Upcoming from "../components/Upcoming";
 
 function Home() {
-  const [upcomingList, setUpcomingList] = useState(null);
+  const [latestList, setLatestList] = useState(null);
 
-  const loadUpcomingEvents = async () => {
-    const url = `${process.env.REACT_APP_BACKEND_URL}/events/upcoming`;
+  const loadLatestVideos = async () => {
+    const url = `${process.env.REACT_APP_BACKEND_URL}/media`;
     const data = await fetch(url);
     const result = await data.json();
 
-    setUpcomingList(result);
+    setLatestList(result);
   };
 
   useEffect(() => {
-    loadUpcomingEvents();
+    loadLatestVideos();
   }, []);
 
-  if (upcomingList === null) {
+  if (latestList === null) {
     return <div>Loading...</div>;
   }
 
-  let numberOfEvents = 4;
+  let numberOfVideos = 2;
 
-  const events = upcomingList.slice(0, numberOfEvents).map((i) => {
+  const videos = latestList.slice(0, numberOfVideos).map((i) => {
     return (
-      <Col>
-        <img src={`${i.imageUrl}`} width={300} />
+      <Col md={6}>
+        <iframe
+          height="315"
+          width="100%"
+          src={`https://www.youtube.com/embed/${i.videoId}`}
+          frameborder="0"
+          allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen
+        ></iframe>
       </Col>
     );
   });
@@ -47,18 +55,28 @@ function Home() {
             </Carousel.Caption>
           </Link>
         </Carousel.Item>
+        <Carousel.Item className="homeCarouselItem">
+          <Link to="events/details">
+            <img className="w-50" src="/images/gsDance.jpg" />
+            <Carousel.Caption className="homeCarouselCaptOther">
+              <h1>GS SUMMER CAMP</h1>
+              <div>
+                <h5>Hip &amp; Hype Party</h5>
+              </div>
+            </Carousel.Caption>
+          </Link>
+        </Carousel.Item>
       </Carousel>
 
-      <div className="homeUpcoming">
+      <Upcoming />
+
+      <div className="homeLatest">
         <div>
-          <h2>UPCOMING</h2>
+          <h2>LATEST</h2>
         </div>
-        <div>
+        <div className="latestList">
           <Container>
-            <Row>{events}</Row>
-            <Link to="/events">
-              <button>Calendar</button>
-            </Link>
+            <Row>{videos}</Row>
           </Container>
         </div>
       </div>
@@ -68,12 +86,6 @@ function Home() {
           <h2>MENU</h2>
         </div>
         <img src="/images/menu.jpg" width="100%" />
-      </div>
-
-      <div className="homeLatest">
-        <div>
-          <h2>LATEST</h2>
-        </div>
       </div>
 
       <Footer />

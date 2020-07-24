@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
 import Navbar from "../components/Navbar";
-import Footer from "../components/Footer"
-import { Container } from "react-bootstrap";
+import Footer from "../components/Footer";
+import { Container, Col, Row } from "react-bootstrap";
 import moment from "moment";
 import { useHistory } from "react-router-dom";
 
 function News() {
+  const [numberOfNews, setNumberOfNews] = useState(4)
   const [newsList, setNewsList] = useState(null);
 
   const loadNews = async () => {
@@ -26,6 +27,20 @@ function News() {
     return <div>Loading...</div>;
   }
 
+  const news = newsList.slice(0, numberOfNews).map((i) => {
+    const newsSelect = () => {
+      history.push(`/news/${i.id}`);
+    };
+
+    return (
+      <Col md={3} className="newsCard" onClick={() => newsSelect()}>
+        <img src={i.imageUrl} width="100%" />
+        <h5>{i.title}</h5>
+        <h6>{moment(i.createdAt).fromNow()}</h6>
+      </Col>
+    );
+  });
+
   return (
     <div>
       <Navbar />
@@ -36,20 +51,12 @@ function News() {
         </Container>
       </div>
       <div className="newsList">
-        <Container className="newsListCont">
-          {newsList.map((item) => {
-            const newsSelect = () => {
-              history.push(`/news/${item.id}`);
-            };
-            return (
-              <div className="newsCard" onClick={() => newsSelect()}>
-                <img src={item.imageUrl} width="100%" />
-                <h4>{item.title}</h4>
-                <h6>{moment(item.createdAt).fromNow()}</h6>
-              </div>
-            );
-          })}
-        </Container>
+        <Container className="newsListCont"><Row>{news}</Row></Container>
+        {newsList.length > numberOfNews ? (
+          <button className="showMoreNewsBtn" onClick={() => setNumberOfNews(numberOfNews+4)}>SHOW MORE</button>
+        ) : (
+          <div></div>
+        )}
       </div>
 
       <Footer />

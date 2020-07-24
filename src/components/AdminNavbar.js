@@ -1,20 +1,36 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React from "react";
+import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { logout } from "../redux/actions/userActions"
 
 function AdminNavbar() {
-    return (
-        <div className="adminNavMain">
-            <div>
-                <img src="/profileLogoSample.jpg" className="adminNavProfileImg" width={80} />
-                <h4>Admin</h4>
-            </div>
-            <ul className="adminNavList">
-                <li><Link to="/admin/news">News</Link></li>
-                <li><Link to="/admin/events">Events</Link></li>
-                <li><Link to="/admin/media">Media</Link></li>
-            </ul>
-        </div>
-    )
+  const dispatch = useDispatch();
+
+  return (
+    <div className="adminNavMain">
+      <div>
+        <img
+          src="/profileLogoSample.jpg"
+          className="adminNavProfileImg"
+          width={80}
+        />
+      </div>
+      <ul className="adminNavList">
+        <Link style={{ textDecoration: "none" }} to="/admin/news">
+          <li className="adminNavItem mb20">NEWS</li>
+        </Link>
+        <Link style={{ textDecoration: "none" }} to="/admin/events">
+          <li className="adminNavItem mb20">EVENTS</li>
+        </Link>
+        <Link style={{ textDecoration: "none" }} to="/admin/media">
+          <li className="adminNavItem mb20">MEDIA</li>
+        </Link>
+        <li className="adminNavItem" onClick={() => dispatch(logout())}>
+          LOGOUT
+        </li>
+      </ul>
+    </div>
+  );
 }
 
-export default AdminNavbar
+export default AdminNavbar;

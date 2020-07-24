@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Row, Col, Container } from "react-bootstrap";
+import { useHistory } from "react-router-dom";
 
 import {
   addMonths,
@@ -18,6 +19,9 @@ function Calendar() {
   const [currentMonth, setCurrentMonth] = useState(new Date());
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [eventsList, setEventsList] = useState(null);
+  const [event, setEvent] = useState(null);
+
+  const history = useHistory();
 
   const loadEvents = async () => {
     const url = `${process.env.REACT_APP_BACKEND_URL}/events`;
@@ -28,8 +32,8 @@ function Calendar() {
   };
 
   useEffect(() => {
-    loadEvents()
-  }, [])
+    loadEvents();
+  }, []);
 
   const nextMonth = () => {
     setCurrentMonth(addMonths(currentMonth, 1));
@@ -57,7 +61,7 @@ function Calendar() {
   };
 
   const weekdays = () => {
-    const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+    const days = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
 
     const renderDays = days.map((day) => {
       return <Col className="weekdayCell">{day}</Col>;
@@ -114,7 +118,16 @@ function Calendar() {
 
       if (bool) {
         let filteredEventsList = a.filter((e, i) => idx.includes(i));
-        return filteredEventsList.map((e) => <div>{e.title}</div>);
+
+        const selectEvent = (e) => {
+          history.push(`/events/${e.id}`);
+        };
+
+        return filteredEventsList.map((e) => (
+          <div className="calendarEventTitle" onClick={() => selectEvent(e)}>
+            {e.title}
+          </div>
+        ));
       }
       return <></>;
     }
@@ -127,7 +140,7 @@ function Calendar() {
   console.log(eventsList);
 
   return (
-    <div>
+    <div className="calendarMain">
       <Container className="calendarContainer">
         <div>{header()}</div>
         <div>{weekdays()}</div>
