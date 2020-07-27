@@ -15,7 +15,7 @@ function Contact() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const url = `${process.env.REACT_APP_BACKEND_URL}/test`;
+    const url = `${process.env.REACT_APP_BACKEND_URL}/contact`;
     const response = await fetch(url, {
       method: "POST",
       headers: {
@@ -92,11 +92,7 @@ function Contact() {
                 placeholder="Message"
               />
             </Form.Group>
-            <button
-              className="blueBtn"
-              type="submit"
-              onClick={() => window.location.reload(false)}
-            >
+            <button className="blueBtn" type="submit">
               SEND MESSAGE
             </button>
           </Form>

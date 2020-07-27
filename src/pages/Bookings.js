@@ -225,7 +225,6 @@ function Bookings() {
               <button
                 className="pinkBtn"
                 type="submit"
-                onClick={() => window.location.reload(false)}
               >
                 SUBMIT FORM
               </button>
