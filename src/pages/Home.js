@@ -4,6 +4,7 @@ import Footer from "../components/Footer";
 import { Carousel, Container, Row, Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import Upcoming from "../components/Upcoming";
+import Loader from "react-loader-spinner";
 
 function Home() {
   const [latestList, setLatestList] = useState(null);
@@ -21,7 +22,17 @@ function Home() {
   }, []);
 
   if (latestList === null) {
-    return <div>Loading...</div>;
+    return (
+      <div className="loaderBg">
+        <Loader
+          type="Audio"
+          color="#0382A6"
+          height={100}
+          width={100}
+          timeout={3000} //3 secs
+        />
+      </div>
+    );
   }
 
   let numberOfVideos = 2;
