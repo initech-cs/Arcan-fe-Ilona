@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { loginWithEmail } from "../redux/actions/userActions.js";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 
 function Login() {
   const dispatch = useDispatch();
-
+  const history = useHistory()
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -29,11 +29,9 @@ function Login() {
             onChange={(e) => setPassword(e.target.value)}
           />
         </div>
-        <Link to="/admin/events">
-          <button className="loginBtn" onClick={() => dispatch(loginWithEmail(email, password))}>
+          <button className="loginBtn" onClick={() => dispatch(loginWithEmail(email, password, history))}>
             LOGIN
           </button>
-        </Link>
       </div>
     </div>
   );

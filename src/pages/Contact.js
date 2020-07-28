@@ -23,7 +23,9 @@ function Contact() {
       },
       body: JSON.stringify(formData),
     });
-    const dt = await response.json();
+    if (response.status === 200) {
+      setFormData(null);
+    }
   };
 
   return (

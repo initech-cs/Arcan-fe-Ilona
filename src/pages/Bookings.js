@@ -1,14 +1,24 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import { Container, Form, Col } from "react-bootstrap";
 import DatePicker from "react-datepicker";
 
 function Bookings() {
+  // const [eventList, setEventList] = useState([]);
   const [formData, setFormData] = useState({
     dateOne: new Date(),
     dateTwo: new Date(),
   });
+  // useEffect(() => {
+  //   fetchEventList();
+  // }, []);
+  // const fetchEventList = async () => {
+  //   const res = await fetch(process.env.REACT_APP_BACKEND_URL + "/events");
+  //   const data = await res.json();
+  //   setEventList(data);
+  // };
+  // console.log(eventList);
 
   const selectEventDate = (date) => setFormData({ ...formData, dateOne: date });
   const selectEventDateSec = (date) =>
@@ -222,10 +232,7 @@ function Bookings() {
                   placeholder="Event description"
                 />
               </Form.Group>
-              <button
-                className="pinkBtn"
-                type="submit"
-              >
+              <button className="pinkBtn" type="submit">
                 SUBMIT FORM
               </button>
             </Form>

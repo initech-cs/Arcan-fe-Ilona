@@ -49,8 +49,13 @@ function AdminEvents() {
   const submitForm = async (e) => {
     e.preventDefault();
     let body = { ...formData };
-    body.artists = body.artists.split(", ");
-    body.genres = body.genres.split(", ");
+
+    body.artists =
+      typeof body.artists === "string"
+        ? body.artists.split(", ")
+        : body.artists;
+    body.genres =
+      typeof body.genres === "string" ? body.genres.split(", ") : body.genres;
     const url = `${process.env.REACT_APP_BACKEND_URL}/events`;
     const response = await fetch(url, {
       method: "POST",
@@ -60,13 +65,21 @@ function AdminEvents() {
       body: JSON.stringify(body),
     });
 
-    loadEvents();
+    if (response.status === 201) {
+      loadEvents();
+    } else {
+      alert("Something went wrong");
+    }
   };
 
   const editEvent = async () => {
     let body = { ...formData };
-    body.artists = body.artists.split(", ");
-    body.genres = body.genres.split(", ");
+    body.artists =
+      typeof body.artists === "string"
+        ? body.artists.split(", ")
+        : body.artists;
+    body.genres =
+      typeof body.genres === "string" ? body.genres.split(", ") : body.genres;
     const url = `${process.env.REACT_APP_BACKEND_URL}/events/${formData.id}`;
     const response = await fetch(url, {
       method: "PATCH",
@@ -76,7 +89,11 @@ function AdminEvents() {
       body: JSON.stringify(body),
     });
 
-    loadEvents();
+    if (response.status === 200) {
+      loadEvents();
+    } else {
+      alert("Something went wrong");
+    }
   };
 
   const handleSubmit = (e) => {
@@ -112,6 +129,8 @@ function AdminEvents() {
     return <div>Loading...</div>;
   }
 
+  console.log(formData);
+
   return (
     <div className="adminEventsMain">
       <AdminNavbar />
@@ -124,6 +143,7 @@ function AdminEvents() {
                 className="createEventBtn"
                 onClick={() => {
                   setOperation("creating");
+                  setFormData({ date: new Date() });
                   openForm();
                 }}
               >
@@ -146,13 +166,18 @@ function AdminEvents() {
                 <Form.Group>
                   <Form.Control
                     name="title"
+                    value={formData.title}
                     type="text"
                     placeholder="Add an event name"
                   />
                 </Form.Group>
                 <Form.Row className="mb20">
                   <Col>
-                    <Form.Control name="category" as="select">
+                    <Form.Control
+                      name="category"
+                      value={formData.category}
+                      as="select"
+                    >
                       <option selected disabled>
                         Select Category
                       </option>
@@ -180,6 +205,7 @@ function AdminEvents() {
                       <Form.Control
                         name="startTime"
                         className="timeSelect"
+                        value={formData.startTime}
                         as="select"
                       >
                         <option selected disabled>
@@ -216,6 +242,7 @@ function AdminEvents() {
                     <Form.Group>
                       <Form.Control
                         name="endTime"
+                        value={formData.endTime}
                         className="timeSelect"
                         as="select"
                       >
@@ -253,6 +280,7 @@ function AdminEvents() {
                     <Form.Group>
                       <Form.Control
                         name="entrance"
+                        value={formData.entrance}
                         type="number"
                         placeholder="Entrance Fee"
                       />
@@ -262,16 +290,22 @@ function AdminEvents() {
                 <Form.Group>
                   <Form.Control
                     name="artists"
+                    value={formData.artists}
                     type="text"
                     placeholder="Enter artist name(s)"
                   />
                 </Form.Group>
                 <Form.Group>
-                  <Form.Control name="genres" placeholder="Enter genre(s)" />
+                  <Form.Control
+                    name="genres"
+                    value={formData.genres}
+                    placeholder="Enter genre(s)"
+                  />
                 </Form.Group>
                 <Form.Group>
                   <Form.Control
                     name="description"
+                    value={formData.description}
                     as="textarea"
                     rows="5"
                     placeholder="Enter description"
@@ -280,11 +314,17 @@ function AdminEvents() {
                 <Form.Group>
                   <Form.Control
                     name="imageUrl"
+                    value={formData.imageUrl}
                     type="url"
                     placeholder="Image URL"
+                    required
                   />
                 </Form.Group>
-                <button className="closeFormBtn" onClick={closeForm}>
+                <button
+                  className="closeFormBtn"
+                  type="button"
+                  onClick={closeForm}
+                >
                   CLOSE
                 </button>
                 <button className="saveFormBtn" type="submit">
@@ -310,6 +350,8 @@ function AdminEvents() {
                     className="editBtn"
                     onClick={() => {
                       setOperation("editing");
+                      console.log("khoakhoa", item);
+                      setFormData({ ...item, date: new Date(item.date) });
                       // setFormData(item)
                       openForm();
                     }}

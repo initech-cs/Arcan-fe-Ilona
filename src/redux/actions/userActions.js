@@ -1,4 +1,4 @@
-const loginWithEmail = (email, password) => async (dispatch) => {
+const loginWithEmail = (email, password, history) => async (dispatch) => {
   const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/auth/login`, {
     method: "POST",
     headers: {
@@ -6,13 +6,18 @@ const loginWithEmail = (email, password) => async (dispatch) => {
     },
     body: JSON.stringify({ email, password }),
   });
-  const body = await res.json();
+  if (res.status === 200) {
+    const body = await res.json();
 
-  localStorage.setItem("token", body.data.token);
-  dispatch({
-    type: "LOGIN",
-    payload: body.data.user,
-  });
+    localStorage.setItem("token", body.data.token);
+    dispatch({
+      type: "LOGIN",
+      payload: body.data.user,
+    });
+    history.push("/admin/events");
+  } else {
+    alert("Something is wrong");
+  }
 };
 
 const fetchUser = () => async (dispatch) => {
