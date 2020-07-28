@@ -63,7 +63,7 @@ function Events() {
         <div>
           <img src={`${i.imageUrl}`} height="100%" />
         </div>
-        <h6 className="mb20">{i.title}</h6>
+        <h6>{i.title}</h6>
       </Col>
     );
   });
