@@ -59,11 +59,11 @@ function Events() {
     };
 
     return (
-      <Col md={3} className="pastEventsCol mb20" onClick={() => eventSelect()}>
+      <Col md={3} className="pastEventsCol" onClick={() => eventSelect()}>
         <div>
           <img src={`${i.imageUrl}`} height="100%" />
         </div>
-        <h6>{i.title}</h6>
+        <h6 className="mb20">{i.title}</h6>
       </Col>
     );
   });
