@@ -339,6 +339,11 @@
   font-size: 12px;
 }
 
+.calendarEventTitle:hover {
+  cursor: pointer;
+}
+
+
 .calendarContainer {
   width: 70%;
 }
