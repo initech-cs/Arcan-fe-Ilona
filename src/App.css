@@ -1129,18 +1129,19 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #151226;
+  background-image: url("/images/contactHeadBg.png");
+  background-size: cover;
 }
 
 .loginForm {
   width: 40%;
   border-radius: 20px;
-  background-color: #282249;
+  background-color: rgb(0, 0, 0, 0.4);
   padding: 50px;
 }
 
 .loginForm > h1 {
-  color: #0388A6;
+  color: white;
   font-size: 50px;
   font-family: 'Staatliches', cursive;
   letter-spacing: .5px;

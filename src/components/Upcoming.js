@@ -2,12 +2,13 @@ import React, { useState, useEffect } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import moment from "moment";
-import { useHistory } from "react-router-dom"
+import { useHistory } from "react-router-dom";
+import Loader from "react-loader-spinner";
 
 function Upcoming() {
   const [upcomingList, setUpcomingList] = useState(null);
 
-  const history = useHistory()
+  const history = useHistory();
 
   const loadUpcomingEvents = async () => {
     const url = `${process.env.REACT_APP_BACKEND_URL}/events/upcoming`;
@@ -22,7 +23,17 @@ function Upcoming() {
   }, []);
 
   if (upcomingList === null) {
-    return <div>Loading...</div>;
+    return (
+      <div className="loaderBg">
+        <Loader
+          type="Audio"
+          color="#0382A6"
+          height={100}
+          width={100}
+          timeout={5000}
+        />
+      </div>
+    );
   }
 
   let numberOfEvents = 4;
