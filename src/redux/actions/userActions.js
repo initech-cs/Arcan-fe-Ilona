@@ -16,7 +16,7 @@ const loginWithEmail = (email, password, history) => async (dispatch) => {
     });
     history.push("/admin/events");
   } else {
-    alert("Something is wrong");
+    alert("Email or password is incorrect");
   }
 };
 
