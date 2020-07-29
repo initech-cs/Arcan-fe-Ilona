@@ -2,12 +2,14 @@ import React, { useState, useEffect } from "react";
 import AdminNavbar from "../components/AdminNavbar";
 import { Container, Row, Col, Modal, Form } from "react-bootstrap";
 import moment from "moment";
+import Loader from "react-loader-spinner";
 
 function AdminNews() {
   const [originalList, setOriginalList] = useState(null);
   const [newsList, setNewsList] = useState(null);
   const [form, setForm] = useState(false);
-  const [formData, setFormData] = useState(null);
+  const [formData, setFormData] = useState({});
+  const [operation, setOperation] = useState("creating");
 
   const openForm = () => setForm(true);
   const closeForm = () => setForm(false);
@@ -51,7 +53,39 @@ function AdminNews() {
       body: JSON.stringify(formData),
     });
 
-    loadNews();
+    if (response.status === 201) {
+      loadNews();
+    } else {
+      alert("Something went wrong");
+    }
+  };
+
+  const editNews = async () => {
+    const url = `${process.env.REACT_APP_BACKEND_URL}/news/${formData.id}`;
+    const response = await fetch(url, {
+      method: "PATCH",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(formData),
+    });
+
+    if (response.status === 200) {
+      loadNews();
+    } else {
+      alert("Something went wrong");
+    }
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (operation === "creating") {
+      submitForm(e);
+    } else if (operation === "editing") {
+      editNews();
+    }
+
+    closeForm();
   };
 
   const deleteNews = async (id) => {
@@ -66,12 +100,25 @@ function AdminNews() {
     loadNews();
   };
 
+  console.log(operation);
+  console.log(formData);
+
   useEffect(() => {
     loadNews();
   }, []);
 
   if (newsList === null) {
-    return <div>Loading...</div>;
+    return (
+      <div className="loaderBg">
+        <Loader
+          type="Audio"
+          color="#0382A6"
+          height={100}
+          width={100}
+          timeout={5000}
+        />
+      </div>
+    );
   }
 
   return (
@@ -82,7 +129,14 @@ function AdminNews() {
         <Container>
           <Row>
             <Col>
-              <button className="createNewsBtn" onClick={openForm}>
+              <button
+                className="createNewsBtn"
+                onClick={() => {
+                  setOperation("creating");
+                  setFormData({});
+                  openForm();
+                }}
+              >
                 CREATE NEWS
               </button>
             </Col>
@@ -101,17 +155,19 @@ function AdminNews() {
               <Form
                 className="newsForm"
                 onChange={getFormData}
-                onSubmit={submitForm}
+                onSubmit={handleSubmit}
               >
                 <Form.Group>
                   <Form.Control
                     name="title"
                     type="text"
+                    value={formData.title}
                     placeholder="Add news headline"
+                    required
                   />
                 </Form.Group>
                 <Form.Group>
-                  <Form.Control name="category" as="select">
+                  <Form.Control name="category" as="select" value={formData.category} required>
                     <option selected disabled>
                       Select Category
                     </option>
@@ -127,15 +183,19 @@ function AdminNews() {
                   <Form.Control
                     name="description"
                     as="textarea"
+                    value={formData.description}
                     rows="5"
                     placeholder="Enter description"
+                    required
                   />
                 </Form.Group>
                 <Form.Group>
                   <Form.Control
                     name="imageUrl"
                     type="url"
+                    value={formData.imageUrl}
                     placeholder="Image URL"
+                    required
                   />
                 </Form.Group>
                 <button className="closeFormBtn" onClick={closeForm}>
@@ -165,7 +225,15 @@ function AdminNews() {
                 <Col md={2}>{item.category}</Col>
                 <Col md={5}>{item.title}</Col>
                 <Col md={3}>
-                  <button className="editBtn">
+                  <button
+                    className="editBtn"
+                    onClick={() => {
+                      setOperation("editing");
+                      setFormData({ ...item });
+                      // setFormData(item)
+                      openForm();
+                    }}
+                  >
                     <i className="fas fa-pen"></i>Edit
                   </button>
                   <button

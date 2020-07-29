@@ -4,9 +4,10 @@ import Footer from "../components/Footer";
 import { Container, Col, Row } from "react-bootstrap";
 import moment from "moment";
 import { useHistory } from "react-router-dom";
+import Loader from "react-loader-spinner";
 
 function News() {
-  const [numberOfNews, setNumberOfNews] = useState(4)
+  const [numberOfNews, setNumberOfNews] = useState(4);
   const [newsList, setNewsList] = useState(null);
 
   const loadNews = async () => {
@@ -24,7 +25,17 @@ function News() {
   }, []);
 
   if (newsList === null) {
-    return <div>Loading...</div>;
+    return (
+      <div className="loaderBg">
+        <Loader
+          type="Audio"
+          color="#0382A6"
+          height={100}
+          width={100}
+          timeout={5000} //3 secs
+        />
+      </div>
+    );
   }
 
   const news = newsList.slice(0, numberOfNews).map((i) => {
@@ -33,7 +44,7 @@ function News() {
     };
 
     return (
-      <Col md={3} className="newsCard" onClick={() => newsSelect()}>
+      <Col md={3} className="newsCard mb20" onClick={() => newsSelect()}>
         <img src={i.imageUrl} width="100%" />
         <h5>{i.title}</h5>
         <h6>{moment(i.createdAt).fromNow()}</h6>
@@ -51,9 +62,16 @@ function News() {
         </Container>
       </div>
       <div className="newsList">
-        <Container className="newsListCont"><Row>{news}</Row></Container>
+        <Container className="newsListCont">
+          <Row>{news}</Row>
+        </Container>
         {newsList.length > numberOfNews ? (
-          <button className="showMoreNewsBtn" onClick={() => setNumberOfNews(numberOfNews+4)}>SHOW MORE</button>
+          <button
+            className="showMoreNewsBtn"
+            onClick={() => setNumberOfNews(numberOfNews + 4)}
+          >
+            SHOW MORE
+          </button>
         ) : (
           <div></div>
         )}

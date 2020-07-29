@@ -3,6 +3,7 @@ import AdminNavbar from "../components/AdminNavbar";
 import { Container, Modal, Row, Col, Form } from "react-bootstrap";
 import moment from "moment";
 import DatePicker from "react-datepicker";
+import Loader from "react-loader-spinner"
 
 import "react-datepicker/dist/react-datepicker.css";
 
@@ -102,8 +103,6 @@ function AdminEvents() {
       submitForm(e);
     } else if (operation === "editing") {
       editEvent();
-      console.log("editing");
-      console.log(formData);
     }
 
     closeForm();
@@ -126,10 +125,18 @@ function AdminEvents() {
   }, []);
 
   if (eventList === null) {
-    return <div>Loading...</div>;
+    return (
+      <div className="loaderBg">
+        <Loader
+          type="Audio"
+          color="#0382A6"
+          height={100}
+          width={100}
+          timeout={5000} 
+        />
+      </div>
+    );
   }
-
-  console.log(formData);
 
   return (
     <div className="adminEventsMain">
@@ -169,6 +176,7 @@ function AdminEvents() {
                     value={formData.title}
                     type="text"
                     placeholder="Add an event name"
+                    required
                   />
                 </Form.Group>
                 <Form.Row className="mb20">
@@ -177,6 +185,7 @@ function AdminEvents() {
                       name="category"
                       value={formData.category}
                       as="select"
+                      required
                     >
                       <option selected disabled>
                         Select Category
@@ -207,6 +216,7 @@ function AdminEvents() {
                         className="timeSelect"
                         value={formData.startTime}
                         as="select"
+                        required
                       >
                         <option selected disabled>
                           Start Time
@@ -245,6 +255,7 @@ function AdminEvents() {
                         value={formData.endTime}
                         className="timeSelect"
                         as="select"
+                        required
                       >
                         <option selected disabled>
                           End Time
@@ -283,6 +294,7 @@ function AdminEvents() {
                         value={formData.entrance}
                         type="number"
                         placeholder="Entrance Fee"
+                        required
                       />
                     </Form.Group>
                   </Col>
@@ -293,6 +305,7 @@ function AdminEvents() {
                     value={formData.artists}
                     type="text"
                     placeholder="Enter artist name(s)"
+                    required
                   />
                 </Form.Group>
                 <Form.Group>
@@ -300,6 +313,7 @@ function AdminEvents() {
                     name="genres"
                     value={formData.genres}
                     placeholder="Enter genre(s)"
+                    required
                   />
                 </Form.Group>
                 <Form.Group>
@@ -309,6 +323,7 @@ function AdminEvents() {
                     as="textarea"
                     rows="5"
                     placeholder="Enter description"
+                    required
                   />
                 </Form.Group>
                 <Form.Group>
@@ -350,7 +365,6 @@ function AdminEvents() {
                     className="editBtn"
                     onClick={() => {
                       setOperation("editing");
-                      console.log("khoakhoa", item);
                       setFormData({ ...item, date: new Date(item.date) });
                       // setFormData(item)
                       openForm();

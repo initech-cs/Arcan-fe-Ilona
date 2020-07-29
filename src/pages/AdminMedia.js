@@ -2,12 +2,14 @@ import React, { useState, useEffect } from "react";
 import AdminNavbar from "../components/AdminNavbar";
 import { Container, Row, Col, Modal, Form } from "react-bootstrap";
 import moment from "moment";
+import Loader from "react-loader-spinner";
 
 function AdminMedia() {
   const [originalList, setOriginalList] = useState(null);
   const [mediaList, setMediaList] = useState(null);
   const [form, setForm] = useState(false);
-  const [formData, setFormData] = useState(null);
+  const [formData, setFormData] = useState({});
+  const [operation, setOperation] = useState("creating");
 
   const openForm = () => setForm(true);
   const closeForm = () => setForm(false);
@@ -17,6 +19,15 @@ function AdminMedia() {
       ...formData,
       [e.target.name]: e.target.value,
     });
+  };
+
+  const loadMedia = async () => {
+    const url = `${process.env.REACT_APP_BACKEND_URL}/media`;
+    const data = await fetch(url);
+    const result = await data.json();
+
+    setMediaList(result);
+    setOriginalList(result);
   };
 
   const submitForm = async (e) => {
@@ -30,16 +41,39 @@ function AdminMedia() {
       body: JSON.stringify(formData),
     });
 
-    loadMedia();
+    if (response.status === 201) {
+      loadMedia();
+    } else {
+      alert("Something went wrong");
+    }
   };
 
-  const loadMedia = async () => {
-    const url = `${process.env.REACT_APP_BACKEND_URL}/media`;
-    const data = await fetch(url);
-    const result = await data.json();
+  const editMedia = async () => {
+    const url = `${process.env.REACT_APP_BACKEND_URL}/media/${formData.id}`;
+    const response = await fetch(url, {
+      method: "PATCH",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(formData),
+    });
 
-    setMediaList(result);
-    setOriginalList(result);
+    if (response.status === 200) {
+      loadMedia();
+    } else {
+      alert("Something went wrong");
+    }
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if ((operation === "creating")) {
+      submitForm(e);
+    } else if ((operation === "editing")) {
+      editMedia();
+    }
+
+    closeForm();
   };
 
   const searchByKeyword = (keyword) => {
@@ -71,10 +105,18 @@ function AdminMedia() {
   }, []);
 
   if (mediaList === null) {
-    return <div>Loading...</div>;
+    return (
+      <div className="loaderBg">
+        <Loader
+          type="Audio"
+          color="#0382A6"
+          height={100}
+          width={100}
+          timeout={5000}
+        />
+      </div>
+    );
   }
-
-  console.log(mediaList);
 
   return (
     <div className="adminMediaMain">
@@ -84,35 +126,46 @@ function AdminMedia() {
         <Container>
           <Row>
             <Col>
-              <button className="createVideoBtn" onClick={openForm}>
+              <button
+                className="createVideoBtn"
+                onClick={() => {
+                  setOperation("creating");
+                  setFormData({});
+                  openForm();
+                }}
+              >
                 ADD VIDEO
               </button>
 
               <Modal show={form} onHide={closeForm}>
                 <Modal.Header>Add Video</Modal.Header>
                 <Modal.Body>
-                  <Form onChange={getFormData} onSubmit={submitForm}>
+                  <Form onSubmit={handleSubmit} onChange={getFormData}>
                     <Form.Group>
                       <Form.Control
                         name="title"
                         type="text"
+                        value={formData.title}
                         placeholder="Video title"
+                        required
                       />
                     </Form.Group>
                     <Form.Group>
                       <Form.Control
                         name="videoId"
                         placeholder="YouTube video ID"
+                        value={formData.videoId}
+                        required
                       />
                     </Form.Group>
-                    <button className="closeFormBtn" onClick={closeForm}>
+                    <button
+                      className="closeFormBtn"
+                      type="button"
+                      onClick={closeForm}
+                    >
                       CLOSE
                     </button>
-                    <button
-                      className="saveFormBtn"
-                      onClick={closeForm}
-                      type="submit"
-                    >
+                    <button className="saveFormBtn" type="submit">
                       SAVE
                     </button>
                   </Form>
@@ -142,7 +195,15 @@ function AdminMedia() {
                 <Col md={2}>{item.videoId}</Col>
                 <Col md={5}>{item.title}</Col>
                 <Col md={3}>
-                  <button className="editBtn">
+                  <button
+                    className="editBtn"
+                    onClick={() => {
+                      setOperation("editing");
+                      setFormData({ ...item });
+                      // setFormData(item)
+                      openForm();
+                    }}
+                  >
                     <i className="fas fa-pen"></i>Edit
                   </button>
                   <button

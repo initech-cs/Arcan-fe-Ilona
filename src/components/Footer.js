@@ -7,7 +7,7 @@ function Footer() {
       <Container>
         <Row className="footerCompanyInfo">
           <Col md={1}>
-            <img src="/images/arcanLogoWithText.png" width={60} />
+            <img className="footerLogo" src="/images/arcanLogoWithText.png" width={60} />
           </Col>
           <Col md={3}>
             <iframe
@@ -47,17 +47,17 @@ function Footer() {
           </Col>
           <Col md={3}>
             <ul className="footerMediaIconList">
-              <li className="footerMediaIcon">
+              <li className="footerMediaIcon mr10">
                 <a href="https://www.facebook.com/ArcanSaigon" target="_blank">
                   <i className="fab fa-facebook-square footerIcon"></i>
                 </a>
               </li>
-              <li className="footerMediaIcon">
+              <li className="footerMediaIcon mr10">
                 <a href="https://www.instagram.com/arcansaigon" target="_blank">
                   <i className="fab fa-instagram"></i>
                 </a>
               </li>
-              <li className="footerMediaIcon">
+              <li className="footerMediaIcon mr10">
                 <a href="https://soundcloud.com/arcansaigon" target="_blank">
                   <i className="fab fa-soundcloud"></i>
                 </a>

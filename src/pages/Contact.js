@@ -38,6 +38,19 @@ function Contact() {
         </Container>
       </div>
 
+      <div className="bookContactText">
+        <Container>
+          <p>
+            In case you have questions, please contact us by filling out the
+            form below. If are a legal entity that would like to work with us,
+            please select "Enterprise" in the "Category" section. If you want to
+            organize an event, but would like to clarify some things with us
+            before proceeding with the booking, please select "Promoter" in the
+            "Category" section.
+          </p>
+        </Container>
+      </div>
+
       <div className="contactMain">
         <div className="contactFormDiv">
           <Form
@@ -51,6 +64,7 @@ function Contact() {
                 type="text"
                 name="name"
                 placeholder="Full Name"
+                required
               />
             </Form.Group>
             <Form.Group>
@@ -59,6 +73,7 @@ function Contact() {
                 name="email"
                 type="email"
                 placeholder="Email Address"
+                required
               />
             </Form.Group>
             <Form.Row>
@@ -67,6 +82,7 @@ function Contact() {
                   className="contactInput"
                   as="select"
                   name="category"
+                  required
                 >
                   <option className="contactOption" selected disabled>
                     Category:
@@ -83,6 +99,7 @@ function Contact() {
                 name="subject"
                 type="text"
                 placeholder="Subject"
+                required
               />
             </Form.Group>
             <Form.Group>
@@ -92,9 +109,10 @@ function Contact() {
                 as="textarea"
                 rows="6"
                 placeholder="Message"
+                required
               />
             </Form.Group>
-            <button className="blueBtn" type="submit">
+            <button className="blueBtn mt10" type="submit">
               SEND MESSAGE
             </button>
           </Form>

@@ -10,9 +10,9 @@ function AdminNavbar() {
     <div className="adminNavMain">
       <div>
         <img
-          src="/profileLogoSample.jpg"
+          src="/images/arcanLogo.png"
           className="adminNavProfileImg"
-          width={80}
+          width={40}
         />
       </div>
       <ul className="adminNavList">

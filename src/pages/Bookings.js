@@ -10,6 +10,7 @@ function Bookings() {
     dateOne: new Date(),
     dateTwo: new Date(),
   });
+
   // useEffect(() => {
   //   fetchEventList();
   // }, []);
@@ -41,7 +42,14 @@ function Bookings() {
       },
       body: JSON.stringify(formData),
     });
-    const data = await response.json();
+
+    if (response.status === 200) {
+      setFormData({
+        dateOne: new Date(),
+        dateTwo: new Date(),
+      });
+      alert("The message has been sent");
+    }
   };
 
   return (
@@ -51,6 +59,18 @@ function Bookings() {
       <div className="bookHeader">
         <Container>
           <h1>BOOKINGS</h1>
+        </Container>
+      </div>
+
+      <div className="bookContactText">
+        <Container>
+          <p>
+            In the past two years, we worked with local and international
+            promoters hosting various events for live bands, performances, and
+            DJs. We welcome any organization to contact us for an available date
+            and host your event. If you would like to organize an event at
+            Arcan, please fill out the form below.
+          </p>
         </Container>
       </div>
 
@@ -68,6 +88,7 @@ function Bookings() {
                   name="name"
                   type="text"
                   placeholder="Full Name"
+                  required
                 />
               </Form.Group>
               <Form.Group>
@@ -76,6 +97,7 @@ function Bookings() {
                   name="email"
                   type="email"
                   placeholder="Email"
+                  required
                 />
               </Form.Group>
               <Form.Row>
@@ -85,6 +107,7 @@ function Bookings() {
                       className="bookInput"
                       name="phone"
                       placeholder="Phone Number"
+                      required
                     />
                   </Form.Group>
                 </Col>
@@ -95,6 +118,7 @@ function Bookings() {
                       name="organization"
                       type="text"
                       placeholder="Name of Organization"
+                      required
                     />
                   </Form.Group>
                 </Col>
@@ -105,6 +129,7 @@ function Bookings() {
                   name="pageUrl"
                   type="url"
                   placeholder="Website/Facebook Page URL"
+                  required
                 />
               </Form.Group>
               <Form.Row>
@@ -136,6 +161,7 @@ function Bookings() {
                       name="startTime"
                       className="bookInput"
                       as="select"
+                      required
                     >
                       <option selected disabled>
                         Start Time
@@ -173,6 +199,7 @@ function Bookings() {
                       name="endTime"
                       className="bookInput"
                       as="select"
+                      required
                     >
                       <option selected disabled>
                         End Time
@@ -211,6 +238,7 @@ function Bookings() {
                       name="capacity"
                       type="number"
                       placeholder="No. of Guests"
+                      required
                     />
                   </Form.Group>
                 </Col>
@@ -221,6 +249,7 @@ function Bookings() {
                   name="title"
                   type="text"
                   placeholder="Event Title"
+                  required
                 />
               </Form.Group>
               <Form.Group>
@@ -230,9 +259,10 @@ function Bookings() {
                   name="description"
                   rows="5"
                   placeholder="Event description"
+                  required
                 />
               </Form.Group>
-              <button className="pinkBtn" type="submit">
+              <button className="pinkBtn mt10" type="submit">
                 SUBMIT FORM
               </button>
             </Form>

@@ -4,6 +4,8 @@ import Footer from "../components/Footer";
 import Calendar from "../components/Calendar";
 import { Col, Container, Row } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
+import Loader from "react-loader-spinner";
+import moment from "moment"
 
 function Events() {
   const [upcomingNumber, setUpcomingNumber] = useState(4);
@@ -35,7 +37,17 @@ function Events() {
   }, []);
 
   if (upcomingList === null || pastList === null) {
-    return <div>Loading...</div>;
+    return (
+      <div className="loaderBg">
+        <Loader
+          type="Audio"
+          color="#0382A6"
+          height={100}
+          width={100}
+          timeout={5000} 
+        />
+      </div>
+    );
   }
 
   const events = upcomingList.slice(0, upcomingNumber).map((i) => {
@@ -48,7 +60,8 @@ function Events() {
         <div>
           <img src={`${i.imageUrl}`} height="100%" />
         </div>
-        <h6>{i.title}</h6>
+        <h5>{i.title}</h5>
+        <h6>{moment(i.date).format("MMM Do, dddd")}</h6>
       </Col>
     );
   });
@@ -59,11 +72,12 @@ function Events() {
     };
 
     return (
-      <Col md={3} className="pastEventsCol" onClick={() => eventSelect()}>
+      <Col md={3} className="pastEventsCol mb40" onClick={() => eventSelect()}>
         <div>
           <img src={`${i.imageUrl}`} height="100%" />
         </div>
-        <h6>{i.title}</h6>
+        <h5>{i.title}</h5>
+        <h6>{moment(i.date).format("MMM Do, dddd")}</h6>
       </Col>
     );
   });

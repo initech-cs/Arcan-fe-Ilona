@@ -10,13 +10,20 @@
   margin-right: 60px;
 }
 
+.mt10 {
+  margin-top: 10px;
+}
+
 .mb20 {
   margin-bottom: 20px;
 }
 
+.mb40 {
+  margin-bottom: 40px;
+}
+
 .loaderBg {
   height: 100vh;
-  background-color: #151226;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -40,7 +47,7 @@
 
 .logo {
   margin-top: 10px;
-  width: 4.8%;
+  width: 58px;
 }
 
 .navRow {
@@ -147,7 +154,6 @@
   justify-content: center;
   align-items: center;
   font-size: 26px;
-  margin-right: 10px;
   background-color: #282249;
   width: 45px;
   height: 45px;
@@ -384,7 +390,8 @@
   background-color: #282249;
   color: #0388A6;
   border: 0.5px solid #0388A6;
-  font-family: 'Do Hyeon', sans-serif;
+  font-family: 'Staatliches', cursive;
+  letter-spacing: .5px;
 }
 
 .dateCell {
@@ -398,9 +405,14 @@
 
 /* Event Details */
 .detailsMain {
+  text-align: right;
   padding-top: 140px;
   padding-bottom: 30px;
   height: 100vh;
+}
+
+.detailsInfo > h1 {
+  font-style: italic;
 }
 
 .detailsGenresList {
@@ -411,7 +423,7 @@
 
 .detailsList {
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
   list-style: none;
   padding-left: 0;
 }
@@ -421,17 +433,17 @@
   padding-top: 100px;
   padding-bottom: 40px;
   text-align: left;
-  background-image: url("/headerBgSample.jpg");
-  font-family: 'Do Hyeon', sans-serif;
+  background-image: url("/images/contactHeadBg.png");
+  font-family: 'Staatliches', cursive;
   background-position: center;
   background-size: cover;
   color: white;
-  letter-spacing: 2px;
+  letter-spacing: .5px;
 }
 
 .contactMain {
-  background-color:#011928;
-  padding: 50px 0;
+  padding-top: 20px;
+  padding-bottom: 50px;
 }
 
 .contactFormDiv{
@@ -444,18 +456,14 @@
 }
 
 .contactInput {
-  background-color: #012941;
   border: 1px solid #0388A6;
-  color: white;
   margin-bottom: 20px;
 }
 
 .contactInput:focus {
   outline: none !important;
   box-shadow: none !important;
-  background-color: #012941;
   border: 1px solid #BF307F;
-  color: white;
 }
 
 /* Bookings */
@@ -467,12 +475,19 @@
   background-position: 0% 90%;
   background-size: cover;
   color: white;
-  font-family: 'Do Hyeon', sans-serif;
-  letter-spacing: 2px;
+  font-family: 'Staatliches', cursive;
+  letter-spacing: .5px;
+}
+
+.bookContactText {
+  margin: 20px 0;
+  font-size: 14px;
+  text-align: left;
 }
 
 .bookMain {
-  padding: 50px 0;
+  padding-top: 20px;
+  padding-bottom: 50px;
   display: flex;
   justify-content: center;
 }
@@ -501,7 +516,7 @@
 .bookDateInput {
   margin-bottom: 5px;
   padding-left: 10px;
-  padding-right: 50px;
+  padding-right: 40px;
   padding-top: 5px;
   padding-bottom: 5px;
   border: 2px solid #BF307F;
@@ -523,8 +538,8 @@
   background-position: center;
   background-size: cover;
   color: white;
-  font-family: 'Do Hyeon', sans-serif;
-  letter-spacing: 2px;
+  font-family: 'Staatliches', cursive;
+  letter-spacing: .5px;
 }
 
 .newsList {
@@ -536,12 +551,17 @@
   justify-content: space-between;
 }
 
-.newsCard {
-  width: 30%;
+.newsCard:hover {
+  cursor: pointer;
 }
 
 .newsCard > h5 {
   margin-top: 10px;
+  font-style: italic;
+}
+
+.newsCard > h6 {
+  font-size: 12px;
 }
 
 .showMoreNewsBtn {
@@ -551,7 +571,8 @@
   background-color: #0388A6;
   border-radius: 30px;
   color: white;
-  font-family: 'Do Hyeon', sans-serif;
+  font-family: 'Staatliches', cursive;
+  letter-spacing: .5px;
   font-size: 20px;
 }
 
@@ -571,6 +592,19 @@
 
 .newsDetailsInfo {
   padding: 40px 0;
+}
+
+.newsDetailsInfo > h2 {
+  font-family: 'Staatliches', cursive;
+  letter-spacing: .5px;
+}
+
+.newsDetailsInfo > h6 {
+  font-style: italic;
+}
+
+.newsDetailsInfo > p {
+  margin-top: 20px;
 }
 
 /* Admin General */
@@ -647,7 +681,8 @@
   border: 1px solid #0388A6;
   background-color: white;
   color: #0388A6;
-  font-family: 'Do Hyeon', sans-serif;
+  font-family: 'Staatliches', cursive;
+  letter-spacing: .5px;
   font-size: 16px;
   transition: .4s;
 }
@@ -666,7 +701,8 @@
   border: 1px solid #BF307F;
   background-color: white;
   color: #BF307F;
-  font-family: 'Do Hyeon', sans-serif;
+  font-family: 'Staatliches', cursive;
+  letter-spacing: .5px;
   font-size: 16px;
   transition: .4s;
 }
@@ -688,24 +724,24 @@
 
 .adminNavProfileImg {
   margin-top: 20px;
-  border-radius: 50px;
 }
 
 .adminNavList {
-  margin-top: 30px;
+  margin-top: 40px;
   list-style: none;
   padding-left: 0;
-  font-family: 'Do Hyeon', sans-serif;
+  font-family: 'Staatliches', cursive;
+  letter-spacing: .5px;
   font-size: 20px;
 }
 
 .adminNavItem {
-  color: #0388A6;
+  color: white;
   transition: .4s;
 }
 
 .adminNavItem:hover {
-  color: #BF307F;
+  color: #0388A6;
   cursor: pointer;
   transition: .4s;
 }
@@ -726,7 +762,8 @@
   border: 1px solid #0388A6;
   background-color: #0388A6;
   color: white;
-  font-family: 'Do Hyeon', sans-serif;
+  font-family: 'Staatliches', cursive;
+  letter-spacing: .5px;
   font-size: 18px;
   transition: .4s;
 }
@@ -739,7 +776,8 @@
 
 .adminNewsListHeader {
   margin-top: 30px;
-  font-family: 'Do Hyeon', sans-serif;
+  font-family: 'Staatliches', cursive;
+  letter-spacing: .5px;
   font-size: 16px;
   padding: 5px 0;
 }
@@ -752,7 +790,8 @@
 .newsModalTitle {
   font-size: 24px;
   color: #0388A6;
-  font-family: 'Do Hyeon', sans-serif;
+  font-family: 'Staatliches', cursive;
+  letter-spacing: .5px;
 }
 
 /* Admin Events */
@@ -771,9 +810,16 @@
   border: 1px solid #0388A6;
   background-color: #0388A6;
   color: white;
-  font-family: 'Do Hyeon', sans-serif;
+  font-family: 'Staatliches', cursive;
+  letter-spacing: .5px;
   font-size: 18px;
   transition: .4s; 
+}
+
+.createEventBtn:hover {
+  border: 1px solid #BF307F;
+  background-color: #BF307F;
+  transition: .4s;
 }
 
 .eventFormDateSelect {
@@ -784,7 +830,8 @@
 
 .adminEventListHeader {
   margin-top: 30px;
-  font-family: 'Do Hyeon', sans-serif;
+  font-family: 'Staatliches', cursive;
+  letter-spacing: .5px;
   font-size: 16px;
   padding: 5px 0;
 }
@@ -803,12 +850,17 @@
   background-position: center;
   background-size: cover;
   color: white;
-  font-family: 'Do Hyeon', sans-serif;
-  letter-spacing: 2px;
+  font-family: 'Staatliches', cursive;
+  letter-spacing: .5px;
 }
 
-.mediaVideo {
+.mediaVideoList {
   padding: 50px 0;
+}
+
+.mediaVideo > h5 {
+  margin-top: 10px;
+  font-style: italic;
 }
 
 /* Admin Media */
@@ -827,7 +879,8 @@
   border: 1px solid #0388A6;
   background-color: #0388A6;
   color: white;
-  font-family: 'Do Hyeon', sans-serif;
+  font-family: 'Staatliches', cursive;
+  letter-spacing: .5px;
   font-size: 18px;
   transition: .4s;
 }
@@ -839,7 +892,8 @@
 
 .adminMediaListHeader {
   margin-top: 30px;
-  font-family: 'Do Hyeon', sans-serif;
+  font-family: 'Staatliches', cursive;
+  letter-spacing: .5px;
   font-size: 16px;
   padding: 5px 0;
 }
@@ -867,20 +921,20 @@
 
 .homeCarouselCapt > h1 {
   text-align: left;
-  font-family: 'Do Hyeon', sans-serif;
   font-size: 100px;
+  font-family: 'Staatliches', cursive;
 }
 
 .homeCarouselCapt > h5 {
-  color: #0388A6;
   text-align: left;
   width: 150px;
+  font-style: italic;
   line-height: 1.6;
 }
 
 .homeCarouselCaptOther > h1 {
   text-align: right;
-  font-family: 'Do Hyeon', sans-serif;
+  font-family: 'Staatliches', cursive;
   font-size: 100px;
 }
 
@@ -891,8 +945,8 @@
 
 .homeCarouselCaptOther > div > h5 {
   width: 150px;
-  color: #BF307F; 
   text-align: right;
+  font-style: italic;
   line-height: 1.6;
 }
 
@@ -909,8 +963,9 @@
 .homeUpcoming > div > h2 {
   color: black;
   font-size: 50px;
-  font-family: 'Do Hyeon', sans-serif;
-  width: 210px;
+  font-family: 'Staatliches', cursive;
+  letter-spacing: .5px;
+  width: 178px;
   border-bottom: 3px solid #BF307F;
 }
 
@@ -922,6 +977,10 @@
   margin-bottom: 40px;
 }
 
+.upcomingCol:hover {
+  cursor: pointer;
+}
+
 .upcomingCol > div {
   height: 150px;
   overflow: hidden;
@@ -929,16 +988,24 @@
   justify-content: center;
 }
 
-.upcomingCol > h6 {
-  color: black;
+.upcomingCol > h5 {
+  font-size: 24px;
   margin-top: 10px;
+  font-style: italic;
+}
+
+.upcomingCol > h6 {
+  font-size: 14px;
+  font-weight: 600;
+  color: #BF307F;
 }
 
 .pinkBtn {
   background-color: #BF307F;
   color: white;
   font-size: 20px;
-  font-family: 'Do Hyeon', sans-serif;
+  font-family: 'Staatliches', cursive;
+  letter-spacing: .5px;
   border: 1px solid #BF307F;
   padding: 10px 30px;
   border-radius: 30px;
@@ -964,8 +1031,9 @@
 .homeLatest > div > h2 {
   color: white;
   font-size: 50px;
-  font-family: 'Do Hyeon', sans-serif;
-  width: 164px;
+  font-family: 'Staatliches', cursive;
+  letter-spacing: .5px;
+  width: 124px;
   border-bottom: 3px solid #0388A6;
 }
 
@@ -986,8 +1054,9 @@
 
 .homeDrinksMenu > div > h2 {
   font-size: 50px;
-  font-family: 'Do Hyeon', sans-serif;
-  width: 116px;
+  font-family: 'Staatliches', cursive;
+  letter-spacing: .5px;
+  width: 96px;
   border-bottom: 3px solid #BF307F;
 }
 
@@ -1004,13 +1073,18 @@
 .pastEvents > div > h2 {
   color: white;
   font-size: 50px;
-  font-family: 'Do Hyeon', sans-serif;
-  width: 108px;
+  font-family: 'Staatliches', cursive;
+  letter-spacing: .5px;
+  width: 84px;
   border-bottom: 3px solid #0388A6;
 }
 
 .pastEventsList {
   margin-top: 40px;
+}
+
+.pastEventsCol:hover {
+  cursor: pointer;
 }
 
 .pastEventsCol > div {
@@ -1020,16 +1094,24 @@
   justify-content: center;
 }
 
+.pastEventsCol > h5 {
+  color: white;
+  font-size: 24px;
+  font-style: italic;
+  margin-top: 10px;
+}
+
 .pastEventsCol > h6 {
   color: white;
-  margin-top: 10px;
+  font-size: 14px;
 }
 
 .blueBtn {
   background-color: #0388A6;
   color: white;
   font-size: 20px;
-  font-family: 'Do Hyeon', sans-serif;
+  font-family: 'Staatliches', cursive;
+  letter-spacing: .5px;
   border: 1px solid #0388A6;
   padding: 10px 30px;
   border-radius: 30px;
@@ -1060,7 +1142,8 @@
 .loginForm > h1 {
   color: #0388A6;
   font-size: 50px;
-  font-family: 'Do Hyeon', sans-serif;
+  font-family: 'Staatliches', cursive;
+  letter-spacing: .5px;
   margin-bottom: 20px;
 }
 
@@ -1079,7 +1162,8 @@
   border-radius: 30px;
   padding: 10px 40px;
   font-size: 20px;
-  font-family: 'Do Hyeon', sans-serif; 
+  font-family: 'Staatliches', cursive;
+  letter-spacing: .5px;
   transition: .4s;
 }
 
@@ -1090,15 +1174,26 @@
 }
 
 /* Event Details Page*/
-
 .genreBadge {
   background-color: #0382A6;
   color: white;
   font-size: 14px;
-  font-family: 'Do Hyeon', sans-serif; 
+  font-family: 'Staatliches', cursive;
+  letter-spacing: .5px;
   padding: 5px 15px;
   border-radius: 20px;
-  margin-right: 10px;
+  margin-left: 5px;
+}
+
+.eventDetail {
+  font-style: italic;
+  font-size: 18px;
+  margin-left: 30px;
+}
+
+.eventDetailTitle {
+  font-style: normal;
+  font-size: 14px;
 }
 
 .eventDetail > div > i {
@@ -1107,6 +1202,31 @@
 }
 
 .eventDetailInfo {
-  font-size: 18px;
-  font-family: 'Do Hyeon', sans-serif;
+  font-size: 30px;
+  font-family: 'Staatliches', cursive;
+}
+
+/* SP Version */
+@media screen and (max-width: 760px) {
+  .navRow {
+    display: none;
+  }
+
+  .calendar {
+    display: none;
+  }
+
+  /* Footer */
+  .footerLogo {
+    display: none;
+  }
+
+  .companyDetailsList {
+    margin: 40px 20px;
+    text-align: center;
+  }
+
+  .companyDetail {
+    justify-content: center;
+  }
 }

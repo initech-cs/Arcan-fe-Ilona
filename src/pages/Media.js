@@ -2,9 +2,10 @@ import React, { useState, useEffect } from "react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import { Container, Modal, Row, Col } from "react-bootstrap";
+import Loader from "react-loader-spinner"
 
 function Media() {
-  const [videoNumber, setVideoNumber] = useState(4)
+  const [videoNumber, setVideoNumber] = useState(4);
   const [video, setVideo] = useState(false);
   const [mediaList, setMediaList] = useState(null);
   const [selectedVid, setSelectedVid] = useState("");
@@ -28,7 +29,17 @@ function Media() {
   }, []);
 
   if (mediaList === null) {
-    return <div>Loading...</div>;
+    return (
+      <div className="loaderBg">
+        <Loader
+          type="Audio"
+          color="#0382A6"
+          height={100}
+          width={100}
+          timeout={5000} 
+        />
+      </div>
+    );
   }
 
   return (
@@ -56,18 +67,21 @@ function Media() {
         </Container>
       </div>
 
-      <div className="mediaVideo">
+      <div className="mediaVideoList">
         <Container>
           <Row>
             {mediaList.map((item) => {
               return (
                 <Col md={4}>
-                  <div onClick={() => showVideo(item.videoId)}>
+                  <div
+                    className="mediaVideo"
+                    onClick={() => showVideo(item.videoId)}
+                  >
                     <img
                       src={`https://img.youtube.com/vi/${item.videoId}/maxresdefault.jpg`}
                       width="100%"
                     />
-                    <h6>{item.title}</h6>
+                    <h5>{item.title}</h5>
                   </div>
                 </Col>
               );

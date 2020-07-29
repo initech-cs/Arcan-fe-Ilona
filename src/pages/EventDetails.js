@@ -4,6 +4,7 @@ import Footer from "../components/Footer";
 import { Container, Row, Col, Badge } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 import moment from "moment";
+import Loader from "react-loader-spinner"
 
 function EventDetails() {
   const [eventDetails, setEventDetails] = useState(null);
@@ -22,7 +23,17 @@ function EventDetails() {
   }, []);
 
   if (eventDetails === null) {
-    return <div>Loading...</div>;
+    return (
+      <div className="loaderBg">
+        <Loader
+          type="Audio"
+          color="#0382A6"
+          height={100}
+          width={100}
+          timeout={5000} 
+        />
+      </div>
+    );
   }
 
   return (
@@ -37,8 +48,8 @@ function EventDetails() {
             </Col>
             <Col>
               <div className="detailsInfo">
-                <h2>{eventDetails.title}</h2>
-                <ul className="detailsGenresList">
+                <h1>{eventDetails.title}</h1>
+                <ul className="detailsGenresList mb20">
                   {eventDetails.genres.map((item) => {
                     return (
                       <li>
@@ -47,44 +58,55 @@ function EventDetails() {
                     );
                   })}
                 </ul>
-                <ul className="detailsList">
-                  <li className="eventDetail mr20">
-                    <div>
+                <ul className="detailsList mb20">
+                  <li className="eventDetail">
+                    <div className="eventDetailTitle">
                       <i class="fas fa-calendar-alt"></i>Date
                     </div>
-                    <div className="eventDetailInfo">
-                      {moment(eventDetails.date).format("LL")}
-                    </div>
+                    <div>{moment(eventDetails.date).format("LL")}</div>
                   </li>
-                  <li className="eventDetail mr20">
-                    <div>
+                  <li className="eventDetail">
+                    <div className="eventDetailTitle">
                       <i class="fas fa-clock"></i>Time
                     </div>
-                    <div className="eventDetailInfo">
+                    <div>
                       {eventDetails.startTime} - {eventDetails.endTime}
                     </div>
                   </li>
                   <li className="eventDetail">
-                    <div>
+                    <div className="eventDetailTitle">
                       <i class="fas fa-ticket-alt"></i>Entrance Fee
                     </div>
-                    <div className="eventDetailInfo">
-                      {eventDetails.entrance} VND
-                    </div>
+                    <div>{eventDetails.entrance.toLocaleString()} VND</div>
                   </li>
                 </ul>
-                <h4>Artists</h4>
-                <p>
-                  {eventDetails.artists.map((item) => {
-                    return (
-                      <span className="eventDetailInfo">
-                        {item.toUpperCase()} |{" "}
-                      </span>
-                    );
-                  })}
-                </p>
-                <h4>Description</h4>
-                <p>{eventDetails.description}</p>
+                <div className="mb20">
+                  <h5>Artists</h5>
+                  <p>
+                    {eventDetails.artists.map((item) => {
+                      if (
+                        item ===
+                        eventDetails.artists[eventDetails.artists.length - 1]
+                      ) {
+                        return (
+                          <span className="eventDetailInfo">
+                            {item.toUpperCase()}
+                          </span>
+                        );
+                      } else {
+                        return (
+                          <span className="eventDetailInfo">
+                            {item.toUpperCase()} |{" "}
+                          </span>
+                        );
+                      }
+                    })}
+                  </p>
+                </div>
+                <div>
+                  <h5>Description</h5>
+                  <p>{eventDetails.description}</p>
+                </div>
               </div>
             </Col>
           </Row>
