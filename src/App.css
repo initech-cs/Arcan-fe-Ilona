@@ -198,6 +198,51 @@
 }
 
 /* Landing Page */
+@media screen and (max-width: 760px) {
+  .landVisual {
+    width: 100%;
+    height: 100% !important;
+  }
+  
+  .landVideo {
+    width: 100%;
+    height: auto;
+  }
+
+  .landMainCont {
+    width: 100%;
+    height: 210px !important;
+  }
+
+  .landMainCont > div > h5 {
+    font-size: 8px;
+    margin-bottom: 10px !important;
+  }
+
+  .landMainCont > div > img {
+    height: 20px;
+    margin-bottom: 15px !important;
+  }
+
+  .landMainCont > div > h1 {
+    font-size: 12px;
+  }
+
+  .bookBtn {
+    font-size: 12px !important;
+    padding: 10px 30px !important;
+    margin-top: 10px !important;
+  }
+
+  .affLogos {
+    display: flex !important;
+  }
+
+  .affLogos > li > img {
+    height: 32px;
+  }
+}
+
 .landVisual {
   height: 100vh;
   background-color: black;
@@ -434,6 +479,12 @@
 }
 
 /* Contact */
+@media screen and (max-width: 760px) {
+  .contactForm {
+    width: 90% !important;
+  }
+}
+
 .contactHeader {
   padding-top: 100px;
   padding-bottom: 40px;
@@ -472,6 +523,16 @@
 }
 
 /* Bookings */
+@media screen and (max-width: 760px) {
+  .bookFormDiv {
+    width: 90% !important;
+  }
+
+  .bookDateInput {
+    width: 100%;
+  }
+}
+
 .bookHeader {
   padding-top: 100px;
   padding-bottom: 40px;
@@ -909,6 +970,25 @@
 }
 
 /* Home */
+@media screen and (max-width: 760px) {
+  .homeCarousel {
+    height: auto !important;
+  }
+
+  .carouselItem {
+    margin-top: 90px;
+    width: 70% !important;
+  }
+
+  .homeCarouselCapt > h1 {
+    font-size: 40px !important;
+  }
+
+  .homeCarouselCaptOther > h1 {
+    font-size: 40px !important;
+  }
+}
+
 .homeCarousel {
   width: 100%;
   height: 100vh;

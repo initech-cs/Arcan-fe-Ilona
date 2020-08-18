@@ -59,7 +59,7 @@ function Home() {
       <Carousel className="homeCarousel">
         <Carousel.Item className="homeCarouselItem">
           <Link to="/events">
-            <img className="w-50" src="/images/bar2clubBg.jpg" />
+            <img className="w-50 carouselItem" src="/images/bar2clubBg.jpg" />
             <Carousel.Caption className="homeCarouselCapt">
               <h1>BAR 2 CLUB</h1>
               <h5>Every 2nd Friday of the Month</h5>
@@ -68,7 +68,7 @@ function Home() {
         </Carousel.Item>
         <Carousel.Item className="homeCarouselItem">
           <Link to="/events">
-            <img className="w-50" src="/images/gsDance.jpg" />
+            <img className="w-50 carouselItem" src="/images/gsDance.jpg" />
             <Carousel.Caption className="homeCarouselCaptOther">
               <h1>GS SUMMER CAMP</h1>
               <div>
